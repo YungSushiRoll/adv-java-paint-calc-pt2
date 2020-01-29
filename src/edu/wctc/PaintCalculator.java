@@ -1,10 +1,12 @@
 package edu.wctc;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class PaintCalculator {
+public class PaintCalculator implements Serializable {
 
     private ArrayList<Room> roomList = new ArrayList<>();
     private Scanner keyboard;
@@ -29,10 +31,10 @@ public class PaintCalculator {
                         createRoom();
                         break;
                     case 2:
-                        // writeFile();
+                        new RoomWriter().writeRoomFile("room.dat", roomList);
                         break;
                     case 3:
-                        // readFile();
+                        roomList = new RoomReader().readRoomFile("room.dat");
                         break;
                     case 4:
                         printRooms();
@@ -43,6 +45,8 @@ public class PaintCalculator {
                 }
             } catch (NumberFormatException e) {
                 System.out.println("Invalid choice");
+            } catch (IOException e) {
+                e.printStackTrace();
             }
         }
 

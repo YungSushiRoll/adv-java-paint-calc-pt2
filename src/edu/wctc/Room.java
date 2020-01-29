@@ -1,8 +1,9 @@
 package edu.wctc;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Room {
+public class Room implements Serializable {
 
     private static int roomCount = 0;
 
