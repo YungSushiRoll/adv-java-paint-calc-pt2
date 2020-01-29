@@ -4,9 +4,15 @@ import java.util.ArrayList;
 
 public class Room {
 
+    private static int roomCount = 0;
+
+    private int roomNum;
+
     private ArrayList<Wall> wallList;
 
     public Room(double length, double width, double height) throws BadWidthException, BadHeightException {
+        roomCount++;
+        roomNum = roomCount;
         wallList = new ArrayList<Wall>();
 
         Wall wallA = new Wall(length, height);
@@ -28,5 +34,13 @@ public class Room {
         }
 
         return area;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "roomNum=" + roomNum +
+                "\nArea=" + getArea() +
+                '}';
     }
 }
