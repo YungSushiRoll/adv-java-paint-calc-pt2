@@ -3,7 +3,7 @@ package edu.wctc;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Room implements Serializable {
+public class Room implements Paintable, Serializable {
 
     private static int roomCount = 0;
 
@@ -43,5 +43,15 @@ public class Room implements Serializable {
                 "roomNum=" + roomNum +
                 "\nArea=" + getArea() +
                 '}';
+    }
+
+    @Override
+    public double getPremiumCost() {
+        return PREMIUM_PAINT_COST_PER_GALLON * getArea();
+    }
+
+    @Override
+    public double getStandardCost() {
+        return STANDARD_PAINT_COST_PER_GALLON * getArea();
     }
 }

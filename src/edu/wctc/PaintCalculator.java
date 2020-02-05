@@ -3,12 +3,11 @@ package edu.wctc;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class PaintCalculator implements Serializable {
 
-    private ArrayList<Room> roomList = new ArrayList<>();
+    private ArrayList<Paintable> paintList = new ArrayList<>();
     private Scanner keyboard;
 
     public static void main(String[] args) {
@@ -31,15 +30,18 @@ public class PaintCalculator implements Serializable {
                         createRoom();
                         break;
                     case 2:
-                        new RoomWriter().writeRoomFile("room.dat", roomList);
+                        createDeck();
                         break;
                     case 3:
-                        roomList = new RoomReader().readRoomFile("room.dat");
+                        new RoomWriter().writeRoomFile("room.dat", paintList);
                         break;
                     case 4:
-                        printRooms();
+                        paintList = new RoomReader().readRoomFile("room.dat");
                         break;
                     case 5:
+                        printRooms();
+                        break;
+                    case 6:
                         System.out.println("Goodbye");
                         System.exit(0);
                 }
@@ -53,11 +55,11 @@ public class PaintCalculator implements Serializable {
     }
 
     private void printRooms() {
-        if (roomList.isEmpty()) {
+        if (paintList.isEmpty()) {
             System.out.println("No rooms yet");
         }
 
-        for (Room room : roomList) {
+        for (Paintable room : paintList) {
             System.out.println(room.toString());
         }
     }
@@ -65,15 +67,26 @@ public class PaintCalculator implements Serializable {
     private void printMenu() {
         System.out.println();
         System.out.println("1. Add room");
-        System.out.println("2. Write rooms to file");
-        System.out.println("3. Read rooms from file");
-        System.out.println("4. View rooms");
-        System.out.println("5. Exit");
+        System.out.println("2. Add Deck");
+        System.out.println("3. Write rooms to file");
+        System.out.println("4. Read rooms from file");
+        System.out.println("5. View rooms");
+        System.out.println("6. Exit");
         System.out.println();
     }
 
     private int promptForDimension(String name) {
         System.out.print("Enter the room's " + name + ": ");
+        String response = keyboard.nextLine();
+        try {
+            return Integer.parseInt(response);
+        } catch (NumberFormatException e) {
+            return 0;
+        }
+    }
+
+    private int promptForDeckDimension(String name) {
+        System.out.print("Enter the deck's " + name + ": ");
         String response = keyboard.nextLine();
         try {
             return Integer.parseInt(response);
@@ -89,12 +102,20 @@ public class PaintCalculator implements Serializable {
 
         try {
             Room room = new Room(length, width, height);
-            roomList.add(room);
+            paintList.add(room);
 
             System.out.println("Room successfully created");
         } catch (BadWidthException | BadHeightException e) {
             System.out.println("Could not create room.");
         }
 
+    }
+
+    private void createDeck() {
+        int length = promptForDeckDimension("length");
+        int width = promptForDeckDimension("width");
+
+        Deck deck = new Deck(length, width);
+        paintList.add(deck);
     }
 }

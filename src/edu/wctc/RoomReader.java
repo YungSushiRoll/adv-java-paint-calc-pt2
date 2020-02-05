@@ -4,17 +4,17 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class RoomReader {
-    public ArrayList<Room> readRoomFile(String fileName) throws IOException {
+    public ArrayList<Paintable> readRoomFile(String fileName) throws IOException {
 
         FileInputStream fis = new FileInputStream(fileName);
         ObjectInputStream ois = new ObjectInputStream(fis);
 
-        ArrayList<Room> rooms = new ArrayList<>();
+        ArrayList<Paintable> rooms = new ArrayList<>();
 
         Object obj;
         try {
             while ((obj = ois.readObject()) != null) {
-                Room aRoom = (Room) obj;
+                Paintable aRoom = (Paintable) obj;
                 rooms.add(aRoom);
             }
         }catch (EOFException | ClassNotFoundException e) {
