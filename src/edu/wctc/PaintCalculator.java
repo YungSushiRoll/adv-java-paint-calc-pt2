@@ -67,7 +67,7 @@ public class PaintCalculator implements Serializable {
     private void printMenu() {
         System.out.println();
         System.out.println("1. Add room");
-        System.out.println("2. Add Deck");
+        System.out.println("2. Add deck");
         System.out.println("3. Write rooms to file");
         System.out.println("4. Read rooms from file");
         System.out.println("5. View rooms");
@@ -115,7 +115,13 @@ public class PaintCalculator implements Serializable {
         int length = promptForDeckDimension("length");
         int width = promptForDeckDimension("width");
 
-        Deck deck = new Deck(length, width);
-        paintList.add(deck);
+        try {
+            Deck deck = new Deck(length, width);
+            paintList.add(deck);
+
+            System.out.println("Room successfully created");
+        } catch (BadWidthException | BadLengthException e) {
+            System.out.println("Could not create room.");
+        }
     }
 }

@@ -47,11 +47,11 @@ public class Room implements Paintable, Serializable {
 
     @Override
     public double getPremiumCost() {
-        return PREMIUM_PAINT_COST_PER_GALLON * getArea();
+        return PREMIUM_PAINT_COST_PER_GALLON;
     }
 
     @Override
     public double getStandardCost() {
-        return STANDARD_PAINT_COST_PER_GALLON * getArea();
+        return STANDARD_PAINT_COST_PER_GALLON;
     }
 }
