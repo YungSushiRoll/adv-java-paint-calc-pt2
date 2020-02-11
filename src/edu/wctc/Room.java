@@ -42,6 +42,7 @@ public class Room implements Paintable, Serializable {
         return "---- Room ----" +
                 "\nRoom Number: " + roomNum +
                 "\nArea: " + getArea() +
+                "\nGallons needed: " + Math.ceil(getArea()/400) +
                 "\nPremium Paint Cost: " + getPremiumCost() +
                 "\nStandard Paint Cost: " + getStandardCost();
     }

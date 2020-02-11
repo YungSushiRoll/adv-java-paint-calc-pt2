@@ -37,6 +37,7 @@ public class Deck implements Paintable, Serializable {
         return "---- Deck ----" +
                 "\nDeck ID: " + deckId +
                 "\nArea: " + getArea() +
+                "\nGallons needed: " + Math.ceil(getArea()/400) +
                 "\nPremium Paint Cost: " + getPremiumCost() +
                 "\nStandard Paint Cost: " + getStandardCost();
     }
