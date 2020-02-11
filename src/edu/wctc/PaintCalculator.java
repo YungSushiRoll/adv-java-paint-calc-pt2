@@ -68,9 +68,9 @@ public class PaintCalculator implements Serializable {
         System.out.println();
         System.out.println("1. Add room");
         System.out.println("2. Add deck");
-        System.out.println("3. Write rooms to file");
-        System.out.println("4. Read rooms from file");
-        System.out.println("5. View rooms");
+        System.out.println("3. Write items to file");
+        System.out.println("4. Read items from file");
+        System.out.println("5. View paintable items");
         System.out.println("6. Exit");
         System.out.println();
     }

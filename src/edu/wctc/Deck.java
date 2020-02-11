@@ -34,19 +34,20 @@ public class Deck implements Paintable, Serializable {
 
     @Override
     public String toString() {
-        return "Deck {" +
-                "Deck ID = " + deckId +
-                "\nArea=" + getArea() +
-                '}';
+        return "---- Deck ----" +
+                "\nDeck ID: " + deckId +
+                "\nArea: " + getArea() +
+                "\nPremium Paint Cost: " + getPremiumCost() +
+                "\nStandard Paint Cost: " + getStandardCost();
     }
 
     @Override
     public double getPremiumCost() {
-        return 0;
+        return Math.ceil(getArea()/400) * PREMIUM_PAINT_COST_PER_GALLON;
     }
 
     @Override
     public double getStandardCost() {
-        return 0;
+        return Math.ceil(getArea()/400) * STANDARD_PAINT_COST_PER_GALLON;
     }
 }

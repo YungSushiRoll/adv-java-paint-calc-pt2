@@ -39,19 +39,21 @@ public class Room implements Paintable, Serializable {
 
     @Override
     public String toString() {
-        return "Room{" +
-                "roomNum=" + roomNum +
-                "\nArea=" + getArea() +
-                '}';
+        return "---- Room ----" +
+                "\nRoom Number: " + roomNum +
+                "\nArea: " + getArea() +
+                "\nPremium Paint Cost: " + getPremiumCost() +
+                "\nStandard Paint Cost: " + getStandardCost();
     }
 
     @Override
     public double getPremiumCost() {
-        return PREMIUM_PAINT_COST_PER_GALLON;
+
+        return Math.ceil(getArea()/400) * PREMIUM_PAINT_COST_PER_GALLON;
     }
 
     @Override
     public double getStandardCost() {
-        return STANDARD_PAINT_COST_PER_GALLON;
+        return Math.ceil(getArea()/400) * STANDARD_PAINT_COST_PER_GALLON;
     }
 }
